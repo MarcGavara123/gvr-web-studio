@@ -55,32 +55,45 @@ $page_title = "Blog - GVR Web Studio";
             max-width: 600px;
             margin: 0 auto 2rem;
         }
+        
         .blog-search {
-            max-width: 500px;
-            margin: 0 auto;
-            position: relative;
-        }
-        .search-input {
-            width: 100%;
-            padding: 15px 20px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            outline: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .search-btn {
-            position: absolute;
-            right: 5px;
-            top: 5px;
-            background: #6366f1;
-            color: white;
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
+    max-width: 500px;
+    margin: 2rem auto 0;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 55px 15px 20px; /* Espacio a la derecha para el botón */
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    outline: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.search-btn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%); /* Centra verticalmente */
+    background: #6366f1;
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-btn:hover {
+    background: #4f46e5;
+    transform: translateY(-50%) scale(1.05);
+}
         .blog-layout {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -378,6 +391,7 @@ $page_title = "Blog - GVR Web Studio";
                         <li><a href="portfolio.php">Portfolio</a></li>
                         <li><a href="blog.php" class="active">Blog</a></li>
                         <li><a href="contacto.php">Contacto</a></li>
+                        <li><a href="sobre-nosotros.php">Sobre Nosotros</a></li>
                     </ul>
                 </div>
             </div>
@@ -541,30 +555,7 @@ $page_title = "Blog - GVR Web Studio";
                             </ul>
                         </div>
                         <?php endif; ?>
-                        
-                        <!-- Newsletter -->
-                        <div class="sidebar-widget newsletter-widget">
-                            <h3>Newsletter</h3>
-                            <p>Recibe los mejores artículos directamente en tu email</p>
-                            <form class="sidebar-newsletter">
-                                <input type="email" placeholder="Tu email" required>
-                                <button type="submit" class="btn-block">Suscribirme</button>
-                            </form>
-                        </div>
-                        
-                        <!-- Redes sociales -->
-                        <div class="sidebar-widget social-widget">
-                            <h3>Síguenos</h3>
-                            <div class="social-sidebar">
-                                <a href="https://instagram.com/gvr_webstudio" target="_blank" class="social-link instagram">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="https://facebook.com/GVRWebStudio" target="_blank" class="social-link facebook">
-                                    <i class="fab fa-facebook"></i>
-                                </a>
-                              
-                            </div>
-                        </div>
+                       
                     </aside>
                 </div>
             </div>
@@ -587,6 +578,8 @@ $page_title = "Blog - GVR Web Studio";
                         <li><a href="portfolio.php">Portfolio</a></li>
                         <li><a href="blog.php">Blog</a></li>
                         <li><a href="contacto.php">Contacto</a></li>
+                        <li><a href="sobre-nosotros.php">Sobre Nosotros</a></li>
+                    
                     </ul>
                 </div>
                 <div class="footer-contact">

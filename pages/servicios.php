@@ -32,42 +32,83 @@ include '../includes/header.php';
                         <h2><?php echo htmlspecialchars($servicio['titulo']); ?></h2>
                         <p><?php echo nl2br(htmlspecialchars($servicio['descripcion'])); ?></p>
                         
+                        <!-- Características por servicio -->
+                        <?php 
+                        $titulo = $servicio['titulo'];
                         
-                        <?php if($servicio['titulo'] == 'Diseño Web'): ?>
+                        // Diseño Web
+                        if($titulo == 'Diseño Web Profesional' || $titulo == 'Diseño Web'): ?>
                             <div class="service-features">
                                 <h4>¿Qué incluye?</h4>
                                 <ul>
-                                    <li><i class="fas fa-check"></i> Diseño responsive</li>
+                                    <li><i class="fas fa-check"></i> Diseño responsive (móvil, tablet, escritorio)</li>
                                     <li><i class="fas fa-check"></i> Optimización SEO básica</li>
                                     <li><i class="fas fa-check"></i> Formulario de contacto</li>
-                                    <li><i class="fas fa-check"></i> Panel de administración</li>
-                                    <li><i class="fas fa-check"></i> Formación incluida</li>
+                                    <li><i class="fas fa-check"></i> Panel de administración intuitivo</li>
                                 </ul>
                             </div>
-                        <?php endif; ?>
                         
-                        <?php if($servicio['titulo'] == 'Diseño de Logotipos'): ?>
+                        <!-- Diseño de Logotipos -->
+                        <?php elseif($titulo == 'Diseño de Logotipos'): ?>
                             <div class="service-features">
                                 <h4>¿Qué incluye?</h4>
                                 <ul>
                                     <li><i class="fas fa-check"></i> Logotipo principal</li>
-                                    <li><i class="fas fa-check"></i> Variantes de color</li>
-                                    <li><i class="fas fa-check"></i> Archivos vectoriales</li>
+                                    <li><i class="fas fa-check"></i> 2 variantes de color</li>
+                                    <li><i class="fas fa-check"></i> Versión simplificada (monocromo)</li>
+                                    <li><i class="fas fa-check"></i> Archivos para web y redes sociales</li>
                                     <li><i class="fas fa-check"></i> Manual de uso básico</li>
                                 </ul>
                             </div>
-                        <?php endif; ?>
                         
-                        <?php if($servicio['titulo'] == 'Branding Completo'): ?>
+                        <!-- Branding Completo -->
+                        <?php elseif($titulo == 'Branding Completo'): ?>
                             <div class="service-features">
                                 <h4>¿Qué incluye?</h4>
                                 <ul>
-                                    <li><i class="fas fa-check"></i> Logotipo y variantes</li>
-                                    <li><i class="fas fa-check"></i> Paleta de colores</li>
+                                    <li><i class="fas fa-check"></i> Logotipo y todas sus variantes</li>
+                                    <li><i class="fas fa-check"></i> Paleta de colores corporativos</li>
                                     <li><i class="fas fa-check"></i> Tipografías corporativas</li>
-                                    <li><i class="fas fa-check"></i> Papelería básica</li>
+                                    <li><i class="fas fa-check"></i> Plantillas para redes sociales</li>
                                 </ul>
                             </div>
+                        
+                        <!-- Posicionamiento SEO -->
+                        <?php elseif($titulo == 'SEO'): ?>
+                            <div class="service-features">
+                                <h4>¿Qué incluye?</h4>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> Análisis de palabras clave</li>
+                                    <li><i class="fas fa-check"></i> Optimización Página (títulos, meta descripciones)</li>
+                                    <li><i class="fas fa-check"></i> Estrategia de contenidos</li>
+                                    <li><i class="fas fa-check"></i> Configuración de Google Search Console</li>
+                                </ul>
+                            </div>
+                        
+                        <!-- Mantenimiento Web -->
+                        <?php elseif($titulo == 'Mantenimiento Web'): ?>
+                            <div class="service-features">
+                                <h4>¿Qué incluye?</h4>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> Copias de seguridad semanales</li>
+                                    <li><i class="fas fa-check"></i> Actualizaciones de seguridad</li>
+                                    <li><i class="fas fa-check"></i> Monitorización</li>
+                                    <li><i class="fas fa-check"></i> Pequeñas modificaciones de contenido</li>
+                                </ul>
+                            </div>
+                        
+                        <!-- Community Management -->
+                        <?php elseif($titulo == 'Redes sociales'): ?>
+                            <div class="service-features">
+                                <h4>¿Qué incluye?</h4>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> Creación de contenido visual profesional</li>
+                                    <li><i class="fas fa-check"></i> Community management (respuesta a comentarios)</li>
+                                    <li><i class="fas fa-check"></i> Análisis de métricas</li>
+                                    <li><i class="fas fa-check"></i> Informe mensual de resultados</li>
+                                </ul>
+                            </div>
+
                         <?php endif; ?>
                         
                         <div class="service-cta">
@@ -88,7 +129,7 @@ include '../includes/header.php';
     <div class="container">
         <div class="section-header">
             <h2>Preguntas frecuentes</h2>
-            <p>Si tienes otras preguntas contactanos.</p>
+            <p>Resolvemos tus dudas sobre nuestros servicios</p>
         </div>
         
         <div class="faq-grid">
@@ -98,31 +139,58 @@ include '../includes/header.php';
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>El tiempo depende de la complejidad. Una web sencilla puede estar lista en 2 semanas.
-                        Recuerda que lo importante es el resultado bien hecho.
-                    </p>
+                    <p>El tiempo depende de la complejidad del proyecto. Una web corporativa sencilla puede estar lista en 2-3 semanas, mientras que proyectos más complejos pueden llevar 4-6 semanas. Priorizamos la calidad, no la rapidez.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <div class="faq-question">
-                    <h3>¿Necesito saber programar?</h3>
+                    <h3>¿Necesito saber programar para gestionar mi web?</h3>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p> No, todas nuestras webs incluyen un panel de administración sencillo y estaremos disponible para realizar el mantenimiento.</p>
+                    <p>No, todas nuestras webs incluyen un panel de administración intuitivo donde puedes actualizar contenidos fácilmente. Además, te formamos durante 1 hora para que te sientas cómodo gestionándola y estamos a tu disposición para cualquier duda.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <div class="faq-question">
-                    <h3>¿Qué incluye el mantenimiento?</h3>
+                    <h3>¿Qué incluye el mantenimiento web?</h3>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>Copias de seguridad, actualizaciones y soporte técnico.</p>
+                    <p>Nuestros planes de mantenimiento incluyen: copias de seguridad semanales, actualizaciones de seguridad, monitorización 24/7, soporte técnico prioritario y modificaciones de contenido.</p>
                 </div>
-                
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>¿Cómo funciona el proceso de diseño de logotipo?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Primero realizamos una reunión para conocer tu marca y valores, luego presentamos 3 propuestas iniciales, realizamos los ajustes que necesites, y entregamos los archivos finales en todos los formatos necesarios.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>¿Ofrecen servicios de SEO por separado?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí, ofrecemos servicios de SEO tanto para webs nuevas como para las que ya están en funcionamiento. Incluye análisis de palabras clave, optimización técnica y estrategia de contenidos.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>¿Qué formas de pago aceptan?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Aceptamos transferencia bancaria, bizum y pago con tarjeta a través de plataforma segura. Siempre con la opción que elija usted.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -133,7 +201,7 @@ include '../includes/header.php';
     <div class="container">
         <div class="cta-content">
             <h2>¿Tienes un proyecto en mente?</h2>
-            <p>Cuéntanos tu idea sin compromiso</p>
+            <p>Cuéntanos tu idea sin compromiso y te asesoramos</p>
             <a href="contacto.php" class="btn btn-primary btn-large">Solicita presupuesto</a>
         </div>
     </div>

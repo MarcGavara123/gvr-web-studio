@@ -273,6 +273,7 @@ $page_title = "Portfolio - GVR Web Studio";
                         <li><a href="portfolio.php" class="active">Portfolio</a></li>
                         <li><a href="blog.php">Blog</a></li>
                         <li><a href="contacto.php">Contacto</a></li>
+                        <li><a href="sobre-nosotros.php">Sobre Nosotros</a></li>
                     </ul>
                 </div>
             </div>
@@ -332,9 +333,7 @@ $page_title = "Portfolio - GVR Web Studio";
                                                 Ver proyecto <i class="fas fa-external-link-alt"></i>
                                             </a>
                                         <?php endif; ?>
-                                        <a href="#" class="portfolio-link-btn view-details" data-id="<?php echo $proyecto['id']; ?>">
-                                            Ver detalles <i class="fas fa-arrow-right"></i>
-                                        </a>
+                                       
                                     </div>
                                 </div>
                             </div>

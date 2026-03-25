@@ -299,6 +299,7 @@ $page_title = "Contacto - GVR Web Studio";
                         <li><a href="portfolio.php">Portfolio</a></li>
                         <li><a href="blog.php">Blog</a></li>
                         <li><a href="contacto.php" class="active">Contacto</a></li>
+                        <li><a href="sobre-nosotros.php">Sobre Nosotros</a></li>
                     </ul>
                 </div>
             </div>
@@ -447,6 +448,7 @@ $page_title = "Contacto - GVR Web Studio";
                         <li><a href="portfolio.php">Portfolio</a></li>
                         <li><a href="blog.php">Blog</a></li>
                         <li><a href="contacto.php">Contacto</a></li>
+                        <li><a href="sobre-nosotros.php">Sobre Nosotros</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
