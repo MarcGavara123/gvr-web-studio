@@ -562,9 +562,7 @@ $page_title = "Blog - GVR Web Studio";
                                 <a href="https://facebook.com/GVRWebStudio" target="_blank" class="social-link facebook">
                                     <i class="fab fa-facebook"></i>
                                 </a>
-                                <a href="https://twitter.com/gvr_webstudio" target="_blank" class="social-link twitter">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
+                              
                             </div>
                         </div>
                     </aside>

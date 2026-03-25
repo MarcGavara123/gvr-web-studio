@@ -307,7 +307,7 @@ $page_title = "Portfolio - GVR Web Studio";
                         <?php while($proyecto = $result->fetch_assoc()): ?>
                             <div class="portfolio-item" data-category="<?php echo strtolower($proyecto['categoria']); ?>">
                                 <div class="portfolio-item-image">
-                                    <img src="../assets/images/portfolio/<?php echo $proyecto['imagen_principal']; ?>" 
+                                    <img src="../assets/images/<?php echo $proyecto['imagen_principal']; ?>" 
                                          alt="<?php echo htmlspecialchars($proyecto['titulo']); ?>"
                                          onerror="this.src='../assets/images/ImagenNegra.png'">
                                     <span class="portfolio-category-tag"><?php echo htmlspecialchars($proyecto['categoria']); ?></span>
@@ -402,13 +402,11 @@ $page_title = "Portfolio - GVR Web Studio";
     </footer>
 
     <script>
-        // Filtrado por categoría
         const filterButtons = document.querySelectorAll('.filter-btn');
         const portfolioItems = document.querySelectorAll('.portfolio-item');
         
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Actualizar botón activo
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
                 
@@ -424,7 +422,6 @@ $page_title = "Portfolio - GVR Web Studio";
             });
         });
         
-        // Modal de detalles (puedes expandirlo con datos reales de la BD)
         const modal = document.getElementById('projectModal');
         
         function closeModal() {

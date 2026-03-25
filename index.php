@@ -13,16 +13,21 @@ $result_blog = $conn->query($sql_blog);
 $sql_count_servicios = "SELECT COUNT(*) as total FROM servicios WHERE activo = 1";
 $result_count = $conn->query($sql_count_servicios);
 $total_servicios = $result_count->fetch_assoc()['total'];
+// Contar proyectos totales
+$sql_proyectos = "SELECT COUNT(*) as total FROM portfolio WHERE activo = 1";
+$result_proyectos = $conn->query($sql_proyectos);
+$total_proyectos = $result_proyectos->fetch_assoc()['total'];
 
-$total_proyectos = 1; 
-$total_clientes = 1;
-
+// Contar clientes únicos (distintos)
+$sql_clientes = "SELECT COUNT(DISTINCT cliente) as total FROM portfolio WHERE activo = 1";
+$result_clientes = $conn->query($sql_clientes);
+$total_clientes = $result_clientes->fetch_assoc()['total'];
 $page_title = "GVR Web Studio - Diseño Web, Logotipos y Branding";
 
 include 'includes/header.php';
 ?>
 
-<!-- SECCIÓN 1: HERO -->
+<!-- SECCIÓN 1: HERO CON VIDEO A LA DERECHA -->
 <section class="hero">
     <div class="container">
         <div class="hero-content">
@@ -34,10 +39,29 @@ include 'includes/header.php';
             </div>
         </div>
 
-        <!-- IMAGEN ESTÁTICA -->
-        
+        <!-- VIDEO A LA DERECHA CON BORDE ESTÉTICO -->
+       <div class="hero-image">
+    <div class="video-frame" style="
+        width: 100%;
+        max-width: 1500px;
+        position: relative;
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: 0 25px 40px -15px rgba(161, 80, 255, 0.4);
+        padding: 3px;
+        background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+        animation: floatVideo 6s ease-in-out infinite;
+    ">
+        <video class="hero-video" style="
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 24px;
+            background: #000;
+        " autoplay loop muted playsinline>
+            <source src="assets/videos/hero-bg.mp4" type="video/mp4">
+        </video>
     </div>
-</section>
 </div>
     </div>
 </section>
@@ -103,40 +127,10 @@ include 'includes/header.php';
         </div>
     </div>
 </section>
-
-<section class="portfolio">
-    <div class="container">
-        <div class="section-header">
-            <h2>Proyectos recientes</h2>
-            <p>Algunos de los trabajos que hemos realizado</p>
-        </div>
-        
-        <div class="portfolio-grid" id="portfolio-container">
-            <?php if ($result_portfolio && $result_portfolio->num_rows > 0): ?>
-                <?php while($proyecto = $result_portfolio->fetch_assoc()): ?>
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <img src="assets/images/portfolio/<?php echo $proyecto['imagen_principal']; ?>" alt="<?php echo htmlspecialchars($proyecto['titulo']); ?>">
-                            <div class="portfolio-overlay">
-                                <span class="portfolio-category"><?php echo ucfirst($proyecto['categoria']); ?></span>
-                            </div>
-                        </div>
-                        <div class="portfolio-info">
-                            <h3><?php echo htmlspecialchars($proyecto['titulo']); ?></h3>
-                            <p><?php echo htmlspecialchars(substr($proyecto['descripcion'], 0, 80)) . '...'; ?></p>
-                            <?php if($proyecto['url_demo']): ?>
-                                <a href="<?php echo $proyecto['url_demo']; ?>" target="_blank" class="portfolio-link">Ver proyecto <i class="fas fa-external-link-alt"></i></a>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <p class="no-data">Próximamente más proyectos</p>
-            <?php endif; ?>
-        </div>
-        
+</section>
         <div class="section-footer">
-            <a href="pages/portfolio.php" class="btn btn-outline">Ver portfolio completo <i class="fas fa-arrow-right"></i></a>
+            <a href="pages/portfolio.php" class="btn btn-outline">Ver portafolio completo <i class="fas fa-arrow-right"></i></a>
+            <br><br>
         </div>
     </div>
 </section>
@@ -179,7 +173,7 @@ include 'includes/header.php';
                 <?php while($post = $result_blog->fetch_assoc()): ?>
                     <div class="blog-card">
                         <div class="blog-image">
-                            <img src="assets/images/blog/<?php echo $post['imagen_destacada']; ?>" alt="<?php echo htmlspecialchars($post['titulo']); ?>">
+                            <img src="assets/images/<?php echo $post['imagen_destacada']; ?>" alt="...">
                         </div>
                         <div class="blog-content">
                             <div class="blog-meta">
@@ -196,7 +190,6 @@ include 'includes/header.php';
                 <p class="no-data">Próximamente artículos del blog</p>
             <?php endif; ?>
         </div>
-        
         <div class="section-footer">
             <a href="pages/blog.php" class="btn btn-outline">Ver todas las entradas <i class="fas fa-arrow-right"></i></a>
         </div>

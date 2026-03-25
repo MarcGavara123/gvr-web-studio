@@ -40,6 +40,7 @@ if (strpos($_SERVER['PHP_SELF'], '/pages/') !== false) {
                         <li><a href="<?php echo $ruta_raiz; ?>pages/portfolio.php">Portfolio</a></li>
                         <li><a href="<?php echo $ruta_raiz; ?>pages/blog.php">Blog</a></li>
                         <li><a href="<?php echo $ruta_raiz; ?>pages/contacto.php">Contacto</a></li>
+                        <li><a href="<?php echo $ruta_raiz; ?>pages/sobre-nosotros.php">Sobre Nosotros</a></li>
                     </ul>
                 </div>
             </div>
