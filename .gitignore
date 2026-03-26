@@ -17,3 +17,6 @@ config.local.php
 # Ignorar archivos de IDE
 .vscode/
 .idea/
+
+# Ignorar archivos de configuración de Stripe
+includes/stripe-config.php
