@@ -1,5 +1,6 @@
 <?php
 require_once '../includes/config.php';
+require_once '../includes/lang.php'; // Añadido para idiomas
 
 // Obtener el término de búsqueda
 $busqueda = isset($_GET['q']) ? trim($_GET['q']) : '';
@@ -22,12 +23,12 @@ $result = $stmt->get_result();
 // Contar resultados
 $total_resultados = $result->num_rows;
 
-$page_title = "Resultados de búsqueda - GVR Web Studio";
+$page_title = __('buscar_titulo_pagina') . ' - GVR Web Studio';
 
 include '../includes/header.php';
 ?>
+
 <style>
-    /* Estilos para la página de resultados */
     .blog-hero {
         background: linear-gradient(135deg, #6366f1, #4f46e5);
         padding: 120px 0 80px;
@@ -46,43 +47,40 @@ include '../includes/header.php';
         margin: 0 auto 1rem;
     }
     .blog-search {
-    max-width: 500px;
-    margin: 2rem auto 0;
-    position: relative;
-}
-
-.search-input {
-    width: 100%;
-    padding: 15px 55px 15px 20px; /* Espacio a la derecha para el botón */
-    border: none;
-    border-radius: 50px;
-    font-size: 1rem;
-    outline: none;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.search-btn {
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%); /* Centra verticalmente */
-    background: #6366f1;
-    color: white;
-    border: none;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.search-btn:hover {
-    background: #4f46e5;
-    transform: translateY(-50%) scale(1.05);
-}
+        max-width: 500px;
+        margin: 2rem auto 0;
+        position: relative;
+    }
+    .search-input {
+        width: 100%;
+        padding: 15px 55px 15px 20px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        outline: none;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .search-btn {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #6366f1;
+        color: white;
+        border: none;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .search-btn:hover {
+        background: #4f46e5;
+        transform: translateY(-50%) scale(1.05);
+    }
     .blog-layout {
         display: grid;
         grid-template-columns: 2fr 1fr;
@@ -304,27 +302,23 @@ include '../includes/header.php';
         .blog-footer { flex-direction: column; gap: 1rem; align-items: flex-start; }
     }
 </style>
-<!-- HERO DE PÁGINA -->
+
 <section class="page-hero blog-hero">
     <div class="container">
-        <h1>Resultados de búsqueda</h1>
-        <p><?php echo $total_resultados; ?> artículo(s) encontrado(s) para: <strong>"<?php echo htmlspecialchars($busqueda); ?>"</strong></p>
-        
-        <!-- Barra de búsqueda -->
+        <h1><?php echo __('buscar_titulo'); ?></h1>
+        <p><?php echo __('buscar_resultados', [$total_resultados, htmlspecialchars($busqueda)]); ?></p>
         <div class="blog-search">
             <form action="buscar.php" method="GET">
-                <input type="text" name="q" placeholder="Buscar artículos..." class="search-input" value="<?php echo htmlspecialchars($busqueda); ?>">
+                <input type="text" name="q" placeholder="<?php echo __('blog_buscar'); ?>" class="search-input" value="<?php echo htmlspecialchars($busqueda); ?>">
                 <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
             </form>
         </div>
     </div>
 </section>
 
-<!-- RESULTADOS -->
 <section class="blog-page">
     <div class="container">
         <div class="blog-layout">
-            <!-- COLUMNA PRINCIPAL -->
             <div class="blog-main">
                 <?php if ($total_resultados > 0): ?>
                     <div class="blog-grid">
@@ -349,12 +343,11 @@ include '../includes/header.php';
                                         </span>
                                         <span class="blog-views">
                                             <i class="far fa-eye"></i> 
-                                            <?php echo number_format($post['visitas']); ?> lecturas
+                                            <?php echo number_format($post['visitas']); ?> <?php echo __('blog_lecturas'); ?>
                                         </span>
                                     </div>
                                     
                                     <h2><?php echo htmlspecialchars($post['titulo']); ?></h2>
-                                    
                                     <p><?php echo htmlspecialchars($post['extracto']); ?></p>
                                     
                                     <?php if($post['tags']): 
@@ -373,7 +366,7 @@ include '../includes/header.php';
                                             <?php echo htmlspecialchars($post['autor']); ?>
                                         </span>
                                         <a href="blog-detalle.php?id=<?php echo $post['id']; ?>" class="blog-read-more">
-                                            Leer artículo <i class="fas fa-arrow-right"></i>
+                                            <?php echo __('blog_leer_mas'); ?> <i class="fas fa-arrow-right"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -384,38 +377,34 @@ include '../includes/header.php';
                 <?php else: ?>
                     <div class="no-data">
                         <i class="fas fa-search fa-4x"></i>
-                        <h3>No se encontraron resultados</h3>
-                        <p>No encontramos artículos que coincidan con "<?php echo htmlspecialchars($busqueda); ?>"</p>
-                        <a href="blog.php" class="btn btn-primary" style="margin-top: 1rem;">Volver al blog</a>
+                        <h3><?php echo __('buscar_no_resultados_titulo'); ?></h3>
+                        <p><?php echo __('buscar_no_resultados_texto', [htmlspecialchars($busqueda)]); ?></p>
+                        <a href="blog.php" class="btn btn-primary" style="margin-top: 1rem;"><?php echo __('buscar_volver'); ?></a>
                     </div>
                 <?php endif; ?>
             </div>
             
-            <!-- SIDEBAR - BARRA LATERAL -->
             <aside class="blog-sidebar">
-                <!-- Sobre el blog -->
                 <div class="sidebar-widget about-widget">
-                    <h3>Sobre el blog</h3>
-                    <p>Compartimos conocimientos, tendencias y consejos sobre diseño web, branding, SEO y marketing digital.</p>
+                    <h3><?php echo __('blog_sidebar_sobre'); ?></h3>
+                    <p><?php echo __('blog_sidebar_sobre_texto'); ?></p>
                 </div>
                 
-                <!-- Consejo de búsqueda -->
                 <div class="sidebar-widget">
-                    <h3>Consejos de búsqueda</h3>
-                    <ul style="list-style: none;">
-                        <li><i class="fas fa-check-circle" style="color: #6366f1;"></i> Usa palabras clave</li>
-                        <li><i class="fas fa-check-circle" style="color: #6366f1;"></i> Busca por temas: diseño web, SEO, branding</li>
-                        <li><i class="fas fa-check-circle" style="color: #6366f1;"></i> Prueba con términos más generales</li>
+                    <h3><?php echo __('buscar_consejos_titulo'); ?></h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle" style="color: #6366f1;"></i> <?php echo __('buscar_consejo1'); ?></li>
+                        <li><i class="fas fa-check-circle" style="color: #6366f1;"></i> <?php echo __('buscar_consejo2'); ?></li>
+                        <li><i class="fas fa-check-circle" style="color: #6366f1;"></i> <?php echo __('buscar_consejo3'); ?></li>
                     </ul>
                 </div>
                 
-                <!-- Newsletter -->
                 <div class="sidebar-widget newsletter-widget">
-                    <h3>Newsletter</h3>
-                    <p>Recibe los mejores artículos directamente en tu email</p>
+                    <h3><?php echo __('blog_sidebar_newsletter'); ?></h3>
+                    <p><?php echo __('blog_sidebar_newsletter_texto'); ?></p>
                     <form class="sidebar-newsletter">
-                        <input type="email" placeholder="Tu email" required>
-                        <button type="submit" class="btn-block">Suscribirme</button>
+                        <input type="email" placeholder="<?php echo __('blog_suscripcion_email'); ?>" required>
+                        <button type="submit" class="btn-block"><?php echo __('blog_suscripcion_boton'); ?></button>
                     </form>
                 </div>
             </aside>

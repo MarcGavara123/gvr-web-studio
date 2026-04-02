@@ -1,5 +1,6 @@
 <?php
 require_once '../includes/config.php';
+require_once '../includes/lang.php'; // Añadido para idiomas
 
 // Obtener todos los proyectos del portfolio
 $sql = "SELECT * FROM portfolio WHERE activo = 1 ORDER BY destacado DESC, fecha_proyecto DESC";
@@ -10,7 +11,7 @@ $sql_categorias = "SELECT DISTINCT categoria FROM portfolio WHERE activo = 1 ORD
 $result_categorias = $conn->query($sql_categorias);
 
 // Título de la página
-$page_title = "Portfolio - GVR Web Studio";
+$page_title = __('portfolio_titulo_pagina') . ' - GVR Web Studio';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -19,17 +20,11 @@ $page_title = "Portfolio - GVR Web Studio";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $page_title; ?></title>
     
-    <!-- CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS específico del portfolio */
         .portfolio-hero {
             background: linear-gradient(135deg, #6366f1, #4f46e5);
             padding: 120px 0 60px;
@@ -50,7 +45,6 @@ $page_title = "Portfolio - GVR Web Studio";
             margin: 0 auto;
         }
         
-        /* Filtros */
         .portfolio-filters {
             text-align: center;
             margin: 3rem 0;
@@ -76,7 +70,6 @@ $page_title = "Portfolio - GVR Web Studio";
             color: white;
         }
         
-        /* Grid de portfolio */
         .portfolio-grid-page {
             padding: 40px 0 80px;
             background: #f9fafb;
@@ -187,63 +180,6 @@ $page_title = "Portfolio - GVR Web Studio";
             gap: 0.6rem;
         }
         
-        /* Modal para ver detalles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-        }
-        
-        .modal.active {
-            display: flex;
-        }
-        
-        .modal-content {
-            max-width: 1000px;
-            width: 90%;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.5rem;
-            z-index: 10;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-        
-        .modal-image {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
-        
-        .modal-info {
-            padding: 2rem;
-        }
-        
         .no-data {
             text-align: center;
             padding: 4rem;
@@ -254,7 +190,6 @@ $page_title = "Portfolio - GVR Web Studio";
         @media (max-width: 768px) {
             .portfolio-hero h1 { font-size: 2.5rem; }
             .portfolio-items { grid-template-columns: 1fr; }
-            .modal-image { height: 250px; }
         }
     </style>
 </head>
@@ -268,12 +203,12 @@ $page_title = "Portfolio - GVR Web Studio";
                         <span class="logo-text">GVR Web Studio</span>
                     </a>
                     <ul class="nav-menu">
-                        <li><a href="../index.php">Inicio</a></li>
-                        <li><a href="servicios.php">Servicios</a></li>
-                        <li><a href="portfolio.php" class="active">Portfolio</a></li>
-                        <li><a href="blog.php">Blog</a></li>
-                        <li><a href="contacto.php">Contacto</a></li>
-                        <li><a href="sobre-nosotros.php">Sobre Nosotros</a></li>
+                        <li><a href="../index.php"><?php echo __('nav_inicio'); ?></a></li>
+                        <li><a href="servicios.php"><?php echo __('nav_servicios'); ?></a></li>
+                        <li><a href="portfolio.php" class="active"><?php echo __('nav_portfolio'); ?></a></li>
+                        <li><a href="blog.php"><?php echo __('nav_blog'); ?></a></li>
+                        <li><a href="contacto.php"><?php echo __('nav_contacto'); ?></a></li>
+                        <li><a href="sobre-nosotros.php"><?php echo __('nav_sobre_nosotros'); ?></a></li>
                     </ul>
                 </div>
             </div>
@@ -281,19 +216,17 @@ $page_title = "Portfolio - GVR Web Studio";
     </header>
 
     <main>
-        <!-- HERO -->
         <section class="portfolio-hero">
             <div class="container">
-                <h1>Nuestro Portfolio</h1>
-                <p>Proyectos que hemos realizado para nuestros clientes</p>
+                <h1><?php echo __('portfolio_hero_titulo'); ?></h1>
+                <p><?php echo __('portfolio_hero_texto'); ?></p>
             </div>
         </section>
 
-        <!-- FILTROS Y PROYECTOS -->
         <section class="portfolio-grid-page">
             <div class="container">
                 <div class="portfolio-filters">
-                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn active" data-filter="all"><?php echo __('portfolio_filtro_todos'); ?></button>
                     <?php if ($result_categorias && $result_categorias->num_rows > 0): ?>
                         <?php while($cat = $result_categorias->fetch_assoc()): ?>
                             <button class="filter-btn" data-filter="<?php echo strtolower($cat['categoria']); ?>">
@@ -306,16 +239,30 @@ $page_title = "Portfolio - GVR Web Studio";
                 <div class="portfolio-items" id="portfolioItems">
                     <?php if ($result && $result->num_rows > 0): ?>
                         <?php while($proyecto = $result->fetch_assoc()): ?>
-                            <div class="portfolio-item" data-category="<?php echo strtolower($proyecto['categoria']); ?>">
+                            <?php
+                            // Mostrar según idioma
+                            $titulo_proy = ($idioma_actual == 'en' && !empty($proyecto['titulo_en'])) 
+                                ? $proyecto['titulo_en'] 
+                                : $proyecto['titulo'];
+                                
+                            $descripcion_proy = ($idioma_actual == 'en' && !empty($proyecto['descripcion_en'])) 
+                                ? $proyecto['descripcion_en'] 
+                                : $proyecto['descripcion'];
+                                
+                            $categoria_proy = ($idioma_actual == 'en' && !empty($proyecto['categoria_en'])) 
+                                ? $proyecto['categoria_en'] 
+                                : $proyecto['categoria'];
+                            ?>
+                            <div class="portfolio-item" data-category="<?php echo strtolower($categoria_proy); ?>">
                                 <div class="portfolio-item-image">
                                     <img src="../assets/images/<?php echo $proyecto['imagen_principal']; ?>" 
-                                         alt="<?php echo htmlspecialchars($proyecto['titulo']); ?>"
-                                         onerror="this.src='../assets/images/ImagenNegra.png'">
-                                    <span class="portfolio-category-tag"><?php echo htmlspecialchars($proyecto['categoria']); ?></span>
+                                        alt="<?php echo htmlspecialchars($titulo_proy); ?>"
+                                        onerror="this.src='../assets/images/ImagenNegra.png'">
+                                    <span class="portfolio-category-tag"><?php echo htmlspecialchars($categoria_proy); ?></span>
                                 </div>
                                 <div class="portfolio-item-info">
-                                    <h3><?php echo htmlspecialchars($proyecto['titulo']); ?></h3>
-                                    <p><?php echo htmlspecialchars(substr($proyecto['descripcion'], 0, 120)) . '...'; ?></p>
+                                    <h3><?php echo htmlspecialchars($titulo_proy); ?></h3>
+                                    <p><?php echo htmlspecialchars(substr($descripcion_proy, 0, 120)) . '...'; ?></p>
                                     
                                     <?php 
                                     $tecnologias = json_decode($proyecto['tecnologias'], true);
@@ -326,45 +273,19 @@ $page_title = "Portfolio - GVR Web Studio";
                                         <?php endforeach; ?>
                                     </div>
                                     <?php endif; ?>
-                                    
-                                    <div class="portfolio-links">
-                                        <?php if($proyecto['url_demo']): ?>
-                                            <a href="<?php echo $proyecto['url_demo']; ?>" target="_blank" class="portfolio-link-btn">
-                                                Ver proyecto <i class="fas fa-external-link-alt"></i>
-                                            </a>
-                                        <?php endif; ?>
-                                       
-                                    </div>
                                 </div>
                             </div>
                         <?php endwhile; ?>
                     <?php else: ?>
                         <div class="no-data">
                             <i class="fas fa-images fa-3x" style="color: #6366f1; opacity: 0.5; margin-bottom: 1rem;"></i>
-                            <h3>Próximamente</h3>
-                            <p>Estamos trabajando en nuevos proyectos. ¡Vuelve pronto para verlos!</p>
+                            <h3><?php echo __('portfolio_no_datos_titulo'); ?></h3>
+                            <p><?php echo __('portfolio_no_datos_texto'); ?></p>
                         </div>
                     <?php endif; ?>
                 </div>
             </div>
         </section>
-    </main>
-
-    <!-- MODAL PARA DETALLES -->
-    <div id="projectModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-close" onclick="closeModal()">
-                <i class="fas fa-times"></i>
-            </div>
-            <img id="modalImage" class="modal-image" src="" alt="">
-            <div class="modal-info">
-                <h2 id="modalTitle"></h2>
-                <p id="modalDescription"></p>
-                <div id="modalTech"></div>
-                <div id="modalLinks"></div>
-            </div>
-        </div>
-    </div>
 
     <!-- FOOTER -->
     <footer class="footer">
@@ -372,20 +293,20 @@ $page_title = "Portfolio - GVR Web Studio";
             <div class="footer-grid">
                 <div class="footer-info">
                     <h3>GVR Web Studio</h3>
-                    <p>Diseño web, logotipos y branding para negocios que quieren destacar.</p>
+                    <p><?php echo __('footer_descripcion'); ?></p>
                 </div>
                 <div class="footer-links">
-                    <h4>Enlaces rápidos</h4>
+                    <h4><?php echo __('footer_enlaces'); ?></h4>
                     <ul>
-                        <li><a href="../index.php">Inicio</a></li>
-                        <li><a href="servicios.php">Servicios</a></li>
-                        <li><a href="portfolio.php">Portfolio</a></li>
-                        <li><a href="blog.php">Blog</a></li>
-                        <li><a href="contacto.php">Contacto</a></li>
+                        <li><a href="../index.php"><?php echo __('nav_inicio'); ?></a></li>
+                        <li><a href="servicios.php"><?php echo __('nav_servicios'); ?></a></li>
+                        <li><a href="portfolio.php"><?php echo __('nav_portfolio'); ?></a></li>
+                        <li><a href="blog.php"><?php echo __('nav_blog'); ?></a></li>
+                        <li><a href="contacto.php"><?php echo __('nav_contacto'); ?></a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
-                    <h4>Contacto</h4>
+                    <h4><?php echo __('footer_contacto'); ?></h4>
                     <ul>
                         <li><i class="fas fa-phone"></i> <a href="tel:693376377">693 37 63 77</a></li>
                         <li><i class="fas fa-phone"></i> <a href="tel:644848658">644 84 86 58</a></li>
@@ -395,7 +316,7 @@ $page_title = "Portfolio - GVR Web Studio";
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 GVR Web Studio. Todos los derechos reservados.</p>
+                <p>&copy; 2025 GVR Web Studio. <?php echo __('footer_derechos'); ?></p>
             </div>
         </div>
     </footer>
@@ -419,23 +340,6 @@ $page_title = "Portfolio - GVR Web Studio";
                     }
                 });
             });
-        });
-        
-        const modal = document.getElementById('projectModal');
-        
-        function closeModal() {
-            modal.classList.remove('active');
-        }
-        
-        document.querySelectorAll('.view-details').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                modal.classList.add('active');
-            });
-        });
-        
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
         });
     </script>
 </body>

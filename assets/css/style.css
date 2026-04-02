@@ -260,6 +260,7 @@ p {
     filter: brightness(1.02) contrast(1.08);
 }
 
+
 /* ===== BOTONES ===== */
 .btn {
     display: inline-block;
@@ -1571,5 +1572,62 @@ section {
     
     .step {
         padding: 1.5rem;
+    }
+}
+/* ===== SELECTOR DE IDIOMA SIMPLE ===== */
+.language-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1.5rem;
+    background: transparent;
+}
+
+.lang-link {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.3rem 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.lang-link img {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    object-fit: cover;
+}
+
+.lang-link:hover {
+    background: #f3f4f6;
+    color: var(--primary-color);
+}
+
+.lang-link.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.lang-link.active img {
+    filter: brightness(0) invert(1);
+}
+
+.lang-divider {
+    color: #e5e7eb;
+    font-size: 0.9rem;
+}
+
+/* Móvil */
+@media (max-width: 768px) {
+    .language-selector {
+        margin-left: 0;
+        margin-top: 1rem;
+        justify-content: center;
     }
 }

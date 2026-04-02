@@ -1,5 +1,6 @@
 <?php
 require_once '../includes/config.php';
+require_once '../includes/lang.php'; // Añadido para idiomas
 
 // Obtener el ID del artículo desde la URL
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -31,7 +32,7 @@ $page_title = $post['titulo'] . ' - GVR Web Studio';
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- HEADER (igual que en blog.php) -->
+    <!-- HEADER -->
     <header class="header">
         <nav class="navbar">
             <div class="container">
@@ -40,11 +41,11 @@ $page_title = $post['titulo'] . ' - GVR Web Studio';
                         <span class="logo-text">GVR Web Studio</span>
                     </a>
                     <ul class="nav-menu">
-                        <li><a href="../index.php">Inicio</a></li>
-                        <li><a href="servicios.php">Servicios</a></li>
-                        <li><a href="portfolio.php">Portfolio</a></li>
-                        <li><a href="blog.php">Blog</a></li>
-                        <li><a href="contacto.php">Contacto</a></li>
+                        <li><a href="../index.php"><?php echo __('nav_inicio'); ?></a></li>
+                        <li><a href="servicios.php"><?php echo __('nav_servicios'); ?></a></li>
+                        <li><a href="portfolio.php"><?php echo __('nav_portfolio'); ?></a></li>
+                        <li><a href="blog.php"><?php echo __('nav_blog'); ?></a></li>
+                        <li><a href="contacto.php"><?php echo __('nav_contacto'); ?></a></li>
                     </ul>
                 </div>
             </div>
@@ -84,7 +85,7 @@ $page_title = $post['titulo'] . ' - GVR Web Studio';
                     $tags = json_decode($post['tags'], true);
                     if(is_array($tags) && !empty($tags)): ?>
                     <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e5e7eb;">
-                        <h3 style="margin-bottom: 1rem;">Etiquetas:</h3>
+                        <h3 style="margin-bottom: 1rem;"><?php echo __('blog_detalle_etiquetas'); ?></h3>
                         <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                             <?php foreach($tags as $tag): ?>
                                 <span style="background: #f3f4f6; color: #6b7280; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">#<?php echo htmlspecialchars($tag); ?></span>
@@ -96,33 +97,33 @@ $page_title = $post['titulo'] . ' - GVR Web Studio';
                 <!-- Botón volver -->
                 <div style="margin-top: 3rem; text-align: center;">
                     <a href="blog.php" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-                        <i class="fas fa-arrow-left"></i> Volver al blog
+                        <i class="fas fa-arrow-left"></i> <?php echo __('blog_detalle_volver'); ?>
                     </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- FOOTER (igual que en blog.php) -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-info">
                     <h3>GVR Web Studio</h3>
-                    <p>Diseño web, logotipos y branding para negocios que quieren destacar.</p>
+                    <p><?php echo __('footer_descripcion'); ?></p>
                 </div>
                 <div class="footer-links">
-                    <h4>Enlaces rápidos</h4>
+                    <h4><?php echo __('footer_enlaces'); ?></h4>
                     <ul>
-                        <li><a href="../index.php">Inicio</a></li>
-                        <li><a href="servicios.php">Servicios</a></li>
-                        <li><a href="portfolio.php">Portfolio</a></li>
-                        <li><a href="blog.php">Blog</a></li>
-                        <li><a href="contacto.php">Contacto</a></li>
+                        <li><a href="../index.php"><?php echo __('nav_inicio'); ?></a></li>
+                        <li><a href="servicios.php"><?php echo __('nav_servicios'); ?></a></li>
+                        <li><a href="portfolio.php"><?php echo __('nav_portfolio'); ?></a></li>
+                        <li><a href="blog.php"><?php echo __('nav_blog'); ?></a></li>
+                        <li><a href="contacto.php"><?php echo __('nav_contacto'); ?></a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
-                    <h4>Contacto</h4>
+                    <h4><?php echo __('footer_contacto'); ?></h4>
                     <ul>
                         <li><i class="fas fa-phone"></i> 693 37 63 77</li>
                         <li><i class="fas fa-envelope"></i> gvrwebstudio@gmail.com</li>
@@ -130,7 +131,7 @@ $page_title = $post['titulo'] . ' - GVR Web Studio';
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 GVR Web Studio. Todos los derechos reservados.</p>
+                <p>&copy; 2025 GVR Web Studio. <?php echo __('footer_derechos'); ?></p>
             </div>
         </div>
     </footer>

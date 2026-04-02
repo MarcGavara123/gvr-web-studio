@@ -1,5 +1,6 @@
 <?php
 require_once '../includes/config.php';
+require_once '../includes/lang.php'; // Añadido para idiomas
 
 // Obtener todos los posts publicados
 $sql = "SELECT * FROM blog_posts WHERE publicado = 1 ORDER BY fecha_publicacion DESC";
@@ -18,7 +19,7 @@ $sql_recientes = "SELECT id, titulo, fecha_publicacion FROM blog_posts WHERE pub
 $result_recientes = $conn->query($sql_recientes);
 
 // Título de la página
-$page_title = "Blog - GVR Web Studio";
+$page_title = __('blog_titulo_pagina') . ' - GVR Web Studio';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -27,17 +28,11 @@ $page_title = "Blog - GVR Web Studio";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $page_title; ?></title>
     
-    <!-- CSS DIRECTAMENTE AQUÍ -->
     <link rel="stylesheet" href="../assets/css/style.css">
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS DE RESPALDO POR SI EL ARCHIVO EXTERNO FALLA */
         .blog-hero {
             background: linear-gradient(135deg, #6366f1, #4f46e5);
             padding: 120px 0 80px;
@@ -57,43 +52,40 @@ $page_title = "Blog - GVR Web Studio";
         }
         
         .blog-search {
-    max-width: 500px;
-    margin: 2rem auto 0;
-    position: relative;
-}
-
-.search-input {
-    width: 100%;
-    padding: 15px 55px 15px 20px; /* Espacio a la derecha para el botón */
-    border: none;
-    border-radius: 50px;
-    font-size: 1rem;
-    outline: none;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.search-btn {
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%); /* Centra verticalmente */
-    background: #6366f1;
-    color: white;
-    border: none;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.search-btn:hover {
-    background: #4f46e5;
-    transform: translateY(-50%) scale(1.05);
-}
+            max-width: 500px;
+            margin: 2rem auto 0;
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            padding: 15px 55px 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #6366f1;
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .search-btn:hover {
+            background: #4f46e5;
+            transform: translateY(-50%) scale(1.05);
+        }
         .blog-layout {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -377,7 +369,7 @@ $page_title = "Blog - GVR Web Studio";
     </style>
 </head>
 <body>
-    <!-- HEADER SIMPLE -->
+    <!-- HEADER -->
     <header class="header">
         <nav class="navbar">
             <div class="container">
@@ -386,12 +378,12 @@ $page_title = "Blog - GVR Web Studio";
                         <span class="logo-text">GVR Web Studio</span>
                     </a>
                     <ul class="nav-menu">
-                        <li><a href="../index.php">Inicio</a></li>
-                        <li><a href="servicios.php">Servicios</a></li>
-                        <li><a href="portfolio.php">Portfolio</a></li>
-                        <li><a href="blog.php" class="active">Blog</a></li>
-                        <li><a href="contacto.php">Contacto</a></li>
-                        <li><a href="sobre-nosotros.php">Sobre Nosotros</a></li>
+                        <li><a href="../index.php"><?php echo __('nav_inicio'); ?></a></li>
+                        <li><a href="servicios.php"><?php echo __('nav_servicios'); ?></a></li>
+                        <li><a href="portfolio.php"><?php echo __('nav_portfolio'); ?></a></li>
+                        <li><a href="blog.php" class="active"><?php echo __('nav_blog'); ?></a></li>
+                        <li><a href="contacto.php"><?php echo __('nav_contacto'); ?></a></li>
+                        <li><a href="sobre-nosotros.php"><?php echo __('nav_sobre_nosotros'); ?></a></li>
                     </ul>
                 </div>
             </div>
@@ -399,27 +391,23 @@ $page_title = "Blog - GVR Web Studio";
     </header>
 
     <main>
-        <!-- HERO DE PÁGINA MEJORADO -->
         <section class="blog-hero">
             <div class="container">
-                <h1>Blog</h1>
-                <p>Consejos, tendencias y novedades sobre diseño web, branding y marketing digital</p>
+                <h1><?php echo __('blog_titulo'); ?></h1>
+                <p><?php echo __('blog_subtitulo'); ?></p>
                 
-                <!-- Barra de búsqueda -->
                 <div class="blog-search">
                     <form action="buscar.php" method="GET">
-                        <input type="text" name="q" placeholder="Buscar artículos..." class="search-input">
+                        <input type="text" name="q" placeholder="<?php echo __('blog_buscar'); ?>" class="search-input">
                         <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
                     </form>
                 </div>
             </div>
         </section>
 
-        <!-- BLOG CONTENT -->
         <section class="blog-page">
             <div class="container">
                 <div class="blog-layout">
-                    <!-- COLUMNA PRINCIPAL - POSTS -->
                     <div class="blog-main">
                         <?php if ($result && $result->num_rows > 0): ?>
                             <div class="blog-grid">
@@ -430,8 +418,12 @@ $page_title = "Blog - GVR Web Studio";
                                                  alt="<?php echo htmlspecialchars($post['titulo']); ?>"
                                                  onerror="this.onerror=null; this.src='../assets/images/Gvrblog.png';">
                                             
-                                            <!-- Categoría como badge -->
-                                            <span class="blog-category-badge"><?php echo htmlspecialchars($post['categoria']); ?></span>
+                                            <?php
+                                            $categoria_blog = ($idioma_actual == 'en' && !empty($post['categoria_en'])) 
+                                                ? $post['categoria_en'] 
+                                                : $post['categoria'];
+                                            ?>
+                                            <span class="blog-category-badge"><?php echo htmlspecialchars($categoria_blog); ?></span>
                                         </div>
                                         
                                         <div class="blog-content">
@@ -442,15 +434,23 @@ $page_title = "Blog - GVR Web Studio";
                                                 </span>
                                                 <span class="blog-views">
                                                     <i class="far fa-eye"></i> 
-                                                    <?php echo number_format($post['visitas']); ?> lecturas
+                                                    <?php echo number_format($post['visitas']); ?> <?php echo __('blog_lecturas'); ?>
                                                 </span>
                                             </div>
                                             
-                                            <h2><?php echo htmlspecialchars($post['titulo']); ?></h2>
+                                            <?php
+                                            $titulo_blog = ($idioma_actual == 'en' && !empty($post['titulo_en'])) 
+                                                ? $post['titulo_en'] 
+                                                : $post['titulo'];
+                                                
+                                            $extracto_blog = ($idioma_actual == 'en' && !empty($post['extracto_en'])) 
+                                                ? $post['extracto_en'] 
+                                                : $post['extracto'];
+                                            ?>
                                             
-                                            <p><?php echo htmlspecialchars($post['extracto']); ?></p>
+                                            <h2><?php echo htmlspecialchars($titulo_blog); ?></h2>
+                                            <p><?php echo htmlspecialchars($extracto_blog); ?></p>
                                             
-                                            <!-- Tags si existen -->
                                             <?php if($post['tags']): 
                                                 $tags = json_decode($post['tags'], true);
                                                 if(is_array($tags) && !empty($tags)): ?>
@@ -467,7 +467,7 @@ $page_title = "Blog - GVR Web Studio";
                                                     <?php echo htmlspecialchars($post['autor']); ?>
                                                 </span>
                                                 <a href="blog-detalle.php?id=<?php echo $post['id']; ?>" class="blog-read-more">
-                                                    Leer artículo <i class="fas fa-arrow-right"></i>
+                                                    <?php echo __('blog_leer_mas'); ?> <i class="fas fa-arrow-right"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -475,39 +475,33 @@ $page_title = "Blog - GVR Web Studio";
                                 <?php endwhile; ?>
                             </div>
                             
-                           
-                            
                         <?php else: ?>
                             <div class="no-data">
                                 <i class="fas fa-newspaper fa-4x"></i>
-                                <h3>Próximamente artículos</h3>
-                                <p>Estamos preparando contenido interesante sobre diseño web, branding y marketing digital para ti. ¡Vuelve pronto!</p>
+                                <h3><?php echo __('blog_no_datos_titulo'); ?></h3>
+                                <p><?php echo __('blog_no_datos_texto'); ?></p>
                                 
-                                <!-- Sugerir suscripción -->
                                 <div class="suggestion-box">
-                                    <h4>¿Quieres ser el primero en leer nuestros artículos?</h4>
-                                    <p>Déjanos tu email y te avisaremos cuando publiquemos</p>
+                                    <h4><?php echo __('blog_suscripcion_titulo'); ?></h4>
+                                    <p><?php echo __('blog_suscripcion_texto'); ?></p>
                                     <form class="mini-newsletter">
-                                        <input type="email" placeholder="Tu email">
-                                        <button type="submit" class="btn btn-primary">Avisarme</button>
+                                        <input type="email" placeholder="<?php echo __('blog_suscripcion_email'); ?>">
+                                        <button type="submit" class="btn btn-primary"><?php echo __('blog_suscripcion_boton'); ?></button>
                                     </form>
                                 </div>
                             </div>
                         <?php endif; ?>
                     </div>
                     
-                    <!-- SIDEBAR - BARRA LATERAL -->
                     <aside class="blog-sidebar">
-                        <!-- Sobre el blog -->
                         <div class="sidebar-widget about-widget">
-                            <h3>Sobre el blog</h3>
-                            <p>Compartimos conocimientos, tendencias y consejos sobre diseño web, branding, SEO y marketing digital para ayudarte a hacer crecer tu negocio.</p>
+                            <h3><?php echo __('blog_sidebar_sobre'); ?></h3>
+                            <p><?php echo __('blog_sidebar_sobre_texto'); ?></p>
                         </div>
                         
-                        <!-- Categorías -->
                         <?php if ($result_categorias && $result_categorias->num_rows > 0): ?>
                         <div class="sidebar-widget categories-widget">
-                            <h3>Categorías</h3>
+                            <h3><?php echo __('blog_sidebar_categorias'); ?></h3>
                             <ul class="categories-list">
                                 <?php while($categoria = $result_categorias->fetch_assoc()): ?>
                                     <li>
@@ -520,10 +514,9 @@ $page_title = "Blog - GVR Web Studio";
                         </div>
                         <?php endif; ?>
                         
-                        <!-- Posts populares -->
                         <?php if ($result_populares && $result_populares->num_rows > 0): ?>
                         <div class="sidebar-widget popular-widget">
-                            <h3>Artículos populares</h3>
+                            <h3><?php echo __('blog_sidebar_populares'); ?></h3>
                             <ul class="popular-list">
                                 <?php while($popular = $result_populares->fetch_assoc()): ?>
                                     <li>
@@ -540,10 +533,9 @@ $page_title = "Blog - GVR Web Studio";
                         </div>
                         <?php endif; ?>
                         
-                        <!-- Posts recientes -->
                         <?php if ($result_recientes && $result_recientes->num_rows > 0): ?>
                         <div class="sidebar-widget recent-widget">
-                            <h3>Recientes</h3>
+                            <h3><?php echo __('blog_sidebar_recientes'); ?></h3>
                             <ul class="recent-list">
                                 <?php while($reciente = $result_recientes->fetch_assoc()): ?>
                                     <li>
@@ -555,35 +547,32 @@ $page_title = "Blog - GVR Web Studio";
                             </ul>
                         </div>
                         <?php endif; ?>
-                       
                     </aside>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- FOOTER SIMPLE -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-info">
                     <h3>GVR Web Studio</h3>
-                    <p>Diseño web, logotipos y branding para negocios que quieren destacar.</p>
+                    <p><?php echo __('footer_descripcion'); ?></p>
                 </div>
                 <div class="footer-links">
-                    <h4>Enlaces rápidos</h4>
+                    <h4><?php echo __('footer_enlaces'); ?></h4>
                     <ul>
-                        <li><a href="../index.php">Inicio</a></li>
-                        <li><a href="servicios.php">Servicios</a></li>
-                        <li><a href="portfolio.php">Portfolio</a></li>
-                        <li><a href="blog.php">Blog</a></li>
-                        <li><a href="contacto.php">Contacto</a></li>
-                        <li><a href="sobre-nosotros.php">Sobre Nosotros</a></li>
-                    
+                        <li><a href="../index.php"><?php echo __('nav_inicio'); ?></a></li>
+                        <li><a href="servicios.php"><?php echo __('nav_servicios'); ?></a></li>
+                        <li><a href="portfolio.php"><?php echo __('nav_portfolio'); ?></a></li>
+                        <li><a href="blog.php"><?php echo __('nav_blog'); ?></a></li>
+                        <li><a href="contacto.php"><?php echo __('nav_contacto'); ?></a></li>
+                        <li><a href="sobre-nosotros.php"><?php echo __('nav_sobre_nosotros'); ?></a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
-                    <h4>Contacto</h4>
+                    <h4><?php echo __('footer_contacto'); ?></h4>
                     <ul>
                         <li><i class="fas fa-phone"></i> <a href="tel:693376377">693 37 63 77</a></li>
                         <li><i class="fas fa-phone"></i> <a href="tel:644848658">644 84 86 58</a></li>
@@ -593,12 +582,11 @@ $page_title = "Blog - GVR Web Studio";
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 GVR Web Studio. Todos los derechos reservados.</p>
+                <p>&copy; 2025 GVR Web Studio. <?php echo __('footer_derechos'); ?></p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="../assets/js/main.js"></script>
 </body>
 </html>
