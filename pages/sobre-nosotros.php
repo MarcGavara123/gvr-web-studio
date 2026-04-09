@@ -7,7 +7,6 @@ $page_title = __('sobre_titulo_pagina') . ' - GVR Web Studio';
 include '../includes/header.php';
 ?>
 
-<!-- HERO DE PÁGINA -->
 <section class="page-hero">
     <div class="container">
         <h1><?php echo __('sobre_hero_titulo'); ?></h1>
@@ -15,7 +14,6 @@ include '../includes/header.php';
     </div>
 </section>
 
-<!-- INTRO -->
 <section class="about-intro">
     <div class="container">
         <div class="about-intro-content">
@@ -31,7 +29,6 @@ include '../includes/header.php';
     </div>
 </section>
 
-<!-- MISIÓN, VISIÓN, VALORES -->
 <section class="mission-vision">
     <div class="container">
         <div class="mv-grid">
@@ -65,7 +62,6 @@ include '../includes/header.php';
     </div>
 </section>
 
-<!-- CÓMO TRABAJAMOS -->
 <section class="how-we-work">
     <div class="container">
         <div class="section-header">
@@ -107,7 +103,6 @@ include '../includes/header.php';
     </div>
 </section>
 
-<!-- POR QUÉ ELEGIRNOS -->
 <section class="why-us">
     <div class="container">
         <div class="section-header">
@@ -149,7 +144,6 @@ include '../includes/header.php';
     </div>
 </section>
 
-<!-- CTA -->
 <section class="cta">
     <div class="container">
         <div class="cta-content">

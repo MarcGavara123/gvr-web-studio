@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Configuración de la base de datos
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root'); // En XAMPP normalmente es 'root'
@@ -16,6 +17,4 @@ if ($conn->connect_error) {
 // Establecer charset
 $conn->set_charset("utf8mb4");
 
-// Iniciar sesión si es necesario
-session_start();
 ?>

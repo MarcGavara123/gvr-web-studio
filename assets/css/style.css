@@ -1362,6 +1362,48 @@ section {
     }
 }
 
+/* Formas de pago */
+.payment-methods {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.payment-methods h3 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.payment-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #f9fafb;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.payment-item i {
+    font-size: 1.8rem;
+    color: #6366f1;
+}
+
+.payment-item strong {
+    color: #1f2937;
+}
+
+.payment-item p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.payment-item small {
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
 /* ===== SOBRE NOSOTROS ===== */
 
 /* Intro */

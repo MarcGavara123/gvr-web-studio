@@ -187,7 +187,7 @@ include 'includes/header.php';
                     </div>
                 <?php endwhile; ?>
             <?php else: ?>
-                <p class="no-data"><?php echo __('blog_no_datos'); ?></p>
+                <p class="no-data"><?php echo __('blog_no_datos'); ?></p> 
             <?php endif; ?>
         </div>
         <div class="section-footer">

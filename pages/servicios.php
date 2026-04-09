@@ -27,7 +27,6 @@ include '../includes/header.php';
             <div class="services-grid">
                 <?php while($servicio = $result->fetch_assoc()): ?>
                     <?php
-                    // Mostrar título según idioma
                     $titulo_mostrar = ($idioma_actual == 'en' && !empty($servicio['titulo_en'])) 
                         ? $servicio['titulo_en'] 
                         : $servicio['titulo'];
@@ -118,7 +117,7 @@ include '../includes/header.php';
                         <?php endif; ?>
                         
                         <div class="service-cta">
-                            <a href="pago.php?servicio=<?php echo urlencode($servicio['titulo']); ?>" class="btn btn-primary">
+                            <a href="contacto.php?servicio=<?php echo urlencode($servicio['titulo']); ?>" class="btn btn-primary">
                                 <?php echo __('servicios_contratar'); ?>
                             </a>
                         </div>
@@ -213,4 +212,4 @@ include '../includes/header.php';
     </div>
 </section>
 
-<?php include '../includes/footer.php'; ?>s
+<?php include '../includes/footer.php'; ?>
