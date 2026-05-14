@@ -22,9 +22,7 @@ $result = $stmt->get_result();
 
 // Contar resultados
 $total_resultados = $result->num_rows;
-
 $page_title = __('buscar_titulo_pagina') . ' - GVR Web Studio';
-
 include '../includes/header.php';
 ?>
 

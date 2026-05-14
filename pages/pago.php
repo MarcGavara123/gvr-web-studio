@@ -3,11 +3,9 @@ require_once '../includes/config.php';
 require_once '../includes/lang.php'; // Añadido para idiomas
 require_once '../includes/stripe-config.php';
 
-// Obtener servicio de la URL y decodificarlo
 $servicio = isset($_GET['servicio']) ? urldecode($_GET['servicio']) : '';
 $precio = 0;
 
-// Precios predefinidos (en céntimos)
 $precios = [
     'Diseño Web Profesional' => 50000,
     'Diseño de Logotipos' => 20000,

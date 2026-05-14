@@ -63,12 +63,11 @@ $servicio_seleccionado = isset($_GET['servicio']) ? htmlspecialchars($_GET['serv
 
 $page_title = __('contacto_titulo_pagina') . ' - GVR Web Studio';
 
-// Incluir header (con el menú hamburguesa)
+
 include '../includes/header.php';
 ?>
 
 <style>
-    /* Estilos específicos de contacto */
     .contact-hero {
         background: linear-gradient(135deg, #6366f1, #4f46e5);
         padding: 120px 0 60px;
@@ -341,25 +340,25 @@ include '../includes/header.php';
                     <div class="contact-hours">
                         <h4><?php echo __('contacto_horario'); ?></h4>
                         <p><?php echo __('contacto_horario_texto'); ?></p>
-                        <p><?php echo __('contacto_horario_fin'); ?></p>
+                        <p><?php echo __('Sabados y domingos contactenos al email'); ?></p>
                     </div>
                     
                     <!-- FORMAS DE PAGO - BIZUM Y TRANSFERENCIA -->
                     <div class="payment-methods">
-                        <h3><?php echo __('contacto_formas_pago'); ?></h3>
+                        <h3><?php echo __('Formas de pago'); ?></h3>
                         <div class="payment-item">
                             <i class="fas fa-mobile-alt"></i>
                             <div>
                                 <strong>Bizum</strong>
-                                <p>Envía tu pago al número: <strong>693 37 63 77</strong></p>
+                                <p>Contactanos para mas información <strong></strong></p>
                                 <small>Incluye tu nombre y concepto en el mensaje</small>
                             </div>
                         </div>
                         <div class="payment-item">
                             <i class="fas fa-university"></i>
                             <div>
-                                <strong><?php echo __('contacto_transferencia'); ?></strong>
-                                <p><?php echo __('contacto_transferencia_texto'); ?> <strong>gvrwebstudio@gmail.com</strong></p>
+                                <strong><?php echo __('Contacto transferencia'); ?></strong>
+                                <p><?php echo __('Más información:'); ?> <strong>gvrwebstudio@gmail.com</strong></p>
                             </div>
                         </div>
                     </div>
